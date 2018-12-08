@@ -14,6 +14,8 @@
 		A2D359BF21BC0D760074B2F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D359BD21BC0D760074B2F3 /* LaunchScreen.storyboard */; };
 		A2D359CA21BC0D760074B2F3 /* Myles_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D359C921BC0D760074B2F3 /* Myles_TestTests.swift */; };
 		A2D359D521BC0D760074B2F3 /* Myles_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D359D421BC0D760074B2F3 /* Myles_TestUITests.swift */; };
+		A2D359E321BC10D60074B2F3 /* DraggedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D359E221BC10D60074B2F3 /* DraggedImageView.swift */; };
+		A2D359E521BC1B8B0074B2F3 /* egg_PNG40798.png in Resources */ = {isa = PBXBuildFile; fileRef = A2D359E421BC1B8B0074B2F3 /* egg_PNG40798.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		A2D359D021BC0D760074B2F3 /* Myles_TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Myles_TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D359D421BC0D760074B2F3 /* Myles_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Myles_TestUITests.swift; sourceTree = "<group>"; };
 		A2D359D621BC0D760074B2F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2D359E221BC10D60074B2F3 /* DraggedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DraggedImageView.swift; path = DraggingImage/DraggedImageView.swift; sourceTree = "<group>"; };
+		A2D359E421BC1B8B0074B2F3 /* egg_PNG40798.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = egg_PNG40798.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +103,9 @@
 			children = (
 				A2D359B421BC0D740074B2F3 /* AppDelegate.swift */,
 				A2D359B621BC0D740074B2F3 /* ViewController.swift */,
+				A2D359E221BC10D60074B2F3 /* DraggedImageView.swift */,
 				A2D359B821BC0D740074B2F3 /* Main.storyboard */,
+				A2D359E421BC1B8B0074B2F3 /* egg_PNG40798.png */,
 				A2D359BB21BC0D760074B2F3 /* Assets.xcassets */,
 				A2D359BD21BC0D760074B2F3 /* LaunchScreen.storyboard */,
 				A2D359C021BC0D760074B2F3 /* Info.plist */,
@@ -231,6 +237,7 @@
 			files = (
 				A2D359BF21BC0D760074B2F3 /* LaunchScreen.storyboard in Resources */,
 				A2D359BC21BC0D760074B2F3 /* Assets.xcassets in Resources */,
+				A2D359E521BC1B8B0074B2F3 /* egg_PNG40798.png in Resources */,
 				A2D359BA21BC0D740074B2F3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D359B721BC0D740074B2F3 /* ViewController.swift in Sources */,
+				A2D359E321BC10D60074B2F3 /* DraggedImageView.swift in Sources */,
 				A2D359B521BC0D740074B2F3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
