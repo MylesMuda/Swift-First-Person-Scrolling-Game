@@ -114,6 +114,7 @@ class ViewController: UIViewController, subViewDelegate {
         collisionBehavior.addBoundary(withIdentifier: "yeahman" as NSCopying, for: UIBezierPath(rect: shipImage.frame))
         dynamicItemBehavior.allowsRotation = false
         dynamicItemBehavior.elasticity = 1
+        
     }
 
     override func didReceiveMemoryWarning() {
