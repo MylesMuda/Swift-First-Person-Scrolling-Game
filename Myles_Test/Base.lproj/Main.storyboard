@@ -21,20 +21,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gmj-s0-g6f">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xzr-wu-AFk">
-                                <rect key="frame" x="561" y="20" width="106" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rb1-71-uR1" customClass="DraggedImageView" customModule="Myles_Test" customModuleProvider="target">
                                 <rect key="frame" x="20" y="119" width="164" height="137"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eOu-9g-6fI">
-                                <rect key="frame" x="561" y="146" width="106" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbN-C4-EVb">
-                                <rect key="frame" x="561" y="272" width="106" height="83"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -48,9 +36,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="birdBottomImage" destination="cbN-C4-EVb" id="3mR-Xy-Fbu"/>
-                        <outlet property="birdImage" destination="eOu-9g-6fI" id="ZgQ-De-f7E"/>
-                        <outlet property="birdTopImage" destination="Xzr-wu-AFk" id="EDx-Ur-kDx"/>
                         <outlet property="roadImage" destination="gmj-s0-g6f" id="QvC-4h-cI7"/>
                         <outlet property="shipImage" destination="rb1-71-uR1" id="Jnm-Ls-7cF"/>
                     </connections>

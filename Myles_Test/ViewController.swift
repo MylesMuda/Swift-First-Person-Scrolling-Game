@@ -23,12 +23,6 @@ class ViewController: UIViewController, subViewDelegate {
    
     @IBOutlet weak var shipImage: DraggedImageView!
     
-    @IBOutlet weak var birdImage: UIImageView!
-    
-    @IBOutlet weak var birdTopImage: UIImageView!
-    
-    @IBOutlet weak var birdBottomImage: UIImageView!
-    
     func ChangeBoundaries()
     {
         collisionBehavior.removeAllBoundaries()
@@ -41,6 +35,10 @@ class ViewController: UIViewController, subViewDelegate {
         // Do any additional setup after loading the view, typically from a nib.
 
         shipImage.myDelegate = self
+        
+        //https://stackoverflow.com/questions/19542694/create-multiple-uiimageviews-programatically
+        
+        var birds = UIImageView(image: UIImage(named: "bird1.png"))
         
         var imageArray: [UIImage]!
         var imageArray2: [UIImage]!
@@ -83,37 +81,36 @@ class ViewController: UIViewController, subViewDelegate {
                         UIImage(named: "bird9.png")!,
                         UIImage(named: "bird10.png")!]
         
+        birds.frame = CGRect(x:500, y: 125, width: 90, height: 90)
+        
+        self.view.addSubview(birds)
+        
         roadImage.image = UIImage.animatedImage(with: imageArray, duration: 0.5)
         
         shipImage.image = UIImage.animatedImage(with: imageArray2, duration: 0.3)
         
-        birdImage.image = UIImage.animatedImage(with: imageArray3, duration: 0.5)
-        
-        birdTopImage.image = UIImage.animatedImage(with: imageArray3, duration: 0.5)
-        
-        birdBottomImage.image = UIImage.animatedImage(with: imageArray3, duration: 0.5)
+        birds.image = UIImage.animatedImage(with: imageArray3, duration: 0.5)
         
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         
-        dynamicItemBehavior = UIDynamicItemBehavior(items: [birdImage, birdTopImage, birdBottomImage])
+        dynamicItemBehavior = UIDynamicItemBehavior(items: [birds])
+
+        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -125, y: 0), for: birds)
         dynamicAnimator.addBehavior(dynamicItemBehavior)
         
-        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -100, y: 0), for: birdImage)
+        //self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -150, y: 25), for: birdTopImage)
         //dynamicAnimator.addBehavior(dynamicItemBehavior)
         
-        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -150, y: 25), for: birdTopImage)
-        //dynamicAnimator.addBehavior(dynamicItemBehavior)
-        
-        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -200, y: -35), for: birdBottomImage)
+        //self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -200, y: -35), for: birdBottomImage)
         
         
-        collisionBehavior = UICollisionBehavior(items: [birdImage, birdTopImage,birdBottomImage])
+        collisionBehavior = UICollisionBehavior(items: [birds])
         //collisionBehavior.translatesReferenceBoundsIntoBoundary = true
         dynamicAnimator.addBehavior(collisionBehavior)
         
         collisionBehavior.addBoundary(withIdentifier: "yeahman" as NSCopying, for: UIBezierPath(rect: shipImage.frame))
         dynamicItemBehavior.allowsRotation = false
-        dynamicItemBehavior.elasticity = 1
+        dynamicItemBehavior.elasticity = 3
         
     }
 
