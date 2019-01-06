@@ -1,13 +1,13 @@
 //
-//  Myles_TestTests.swift
-//  Myles_TestTests
+//  16004388.swift
+//  16004388
 //
-//  Created by mm16aft on 08/12/2018.
+//  Created by mm16aft on 08/11/2018.
 //  Copyright © 2018 mm16aft. All rights reserved.
 //
 
 import XCTest
-@testable import Myles_Test
+@testable import 16004388
 
 class Myles_TestTests: XCTestCase {
     
