@@ -26,6 +26,7 @@ class ViewController: UIViewController, subViewDelegate {
     @IBOutlet weak var scoreboard: UILabel!
     
     @IBAction func replay(_ sender: UIButton) {
+        clearScreen()
         self.viewDidLoad()
         self.gameover.alpha = 0
         score = 0
@@ -46,8 +47,9 @@ class ViewController: UIViewController, subViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        GameMusicPlayer.musicPlayer.playGameMusic()
+    
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         dynamicItemBehavior = UIDynamicItemBehavior(items: [])
         dynamicAnimator.addBehavior(dynamicItemBehavior)
@@ -58,7 +60,7 @@ class ViewController: UIViewController, subViewDelegate {
         shipImage.myDelegate = self
         
         var roadArray: [UIImage]!
-        var shipArray: [UIImage]!
+        var planeArray: [UIImage]!
         
         roadArray = [   UIImage(named: "City0.png")!,
                         UIImage(named: "City1.png")!,
@@ -85,24 +87,25 @@ class ViewController: UIViewController, subViewDelegate {
                         UIImage(named: "City21.png")!,
                         UIImage(named: "City22.png")!]
         
-        shipArray =   [ UIImage(named: "plane1.png")!,
+        planeArray =   [ UIImage(named: "plane1.png")!,
                         UIImage(named: "plane2.png")!,
                         UIImage(named: "plane3.png")!,
                         UIImage(named: "plane4.png")!]
         
+        //Set dimensions and the animations for the plane and the city.
         shipImage.frame = CGRect(x:0, y: H*(0.2), width: 145, height: 110)
-            
+        roadImage.frame = CGRect(x:0, y: 0, width: W*1 , height: H*1)
+        roadImage.image = UIImage.animatedImage(with: roadArray, duration: 1.4)
+        shipImage.image = UIImage.animatedImage(with: planeArray, duration: 0.7)
         
-        roadImage.image = UIImage.animatedImage(with: roadArray, duration: 1.2)
-        shipImage.image = UIImage.animatedImage(with: shipArray, duration: 0.7)
-        
+        //Timer for birds
         for index in 0...8{
             let delay = Double(self.timeArray[index])
             let release = DispatchTime.now() + delay
             DispatchQueue.main.asyncAfter(deadline: release){
                 let birds = UIImageView(image: nil)
                 var birdArray: [UIImage]
-                
+                //Animation and programatic spawn for birds
                 birdArray = [ UIImage(named: "bird1.png")!,
                               UIImage(named: "bird2.png")!,
                               UIImage(named: "bird3.png")!,
@@ -114,12 +117,11 @@ class ViewController: UIViewController, subViewDelegate {
                 self.view.addSubview(birds)
                 self.view.bringSubview(toFront: birds)
                 
+                //Collision behaviours for birds
                 self.dynamicItemBehavior.addItem(birds)
-                self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -200, y: 0), for: birds)
+                self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -250, y: 0), for: birds)
                 self.collisionBehavior.addItem(birds)
-                //self.dynamicItemBehavior.allowsRotation = false
                 self.dynamicItemBehavior.elasticity = 1
-                
                 self.collisionBehavior.action = {
                     if(birds.frame.intersects(self.shipImage.frame)) {
                         self.score -= 50
@@ -129,13 +131,14 @@ class ViewController: UIViewController, subViewDelegate {
 
         }
         
+        //Timer for coins
         for index in 0...8{
             let delay = Double(self.timeArray[index])
             let release = DispatchTime.now() + delay
             DispatchQueue.main.asyncAfter(deadline: release){
                 let coin = UIImageView(image: nil)
                 var coinArray: [UIImage]
-                
+                //Animation and programatic spawn for coins
                 coinArray = [   UIImage(named: "coin1.png")!,
                                 UIImage(named: "coin2.png")!,
                                 UIImage(named: "coin3.png")!,
@@ -144,20 +147,18 @@ class ViewController: UIViewController, subViewDelegate {
                                 UIImage(named: "coin6.png")!]
                 
                 coin.image = UIImage.animatedImage(with: coinArray, duration: 0.5)
-                coin.frame = CGRect(x: self.W , y: CGFloat (arc4random_uniform(UInt32(self.H)-50)), width: self.W*(0.1), height: self.H*(0.1))
+                coin.frame = CGRect(x: self.W , y: CGFloat (arc4random_uniform(UInt32(self.H)-50)), width: self.W*(0.075), height: self.H*(0.1))
                 
                 self.view.addSubview(coin)
                 self.view.bringSubview(toFront: coin)
                 
+                //Collision behaviours for birds
                 self.dynamicItemBehavior.addItem(coin)
-                self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -150, y: 0), for: coin)
+                self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: -200, y: 0), for: coin)
                 self.collisionBehavior.addItem(coin)
-                
                 self.collisionBehavior.action = {
                     if(coin.frame.intersects(self.shipImage.frame)) {
-                        //remove/hide view
                         self.view.sendSubview(toBack: coin)
-                        //add points
                         self.score += 100
                     }
                 }
@@ -165,16 +166,25 @@ class ViewController: UIViewController, subViewDelegate {
         
         }
         
+        //Timer for game over screen
         let timer = DispatchTime.now() + 20
         DispatchQueue.main.asyncAfter(deadline: timer){
-            //self.view.bringSubview(toFront: self.roadImage)
             self.view.bringSubview(toFront: self.gameover)
             self.gameover.alpha = 1
             self.gameover.frame = CGRect(x:0, y: 0, width:self.W*1 , height:self.H*1)
-            self.scoreboard.text = ("Score: " + String(self.score))
+            self.scoreboard.text = ("SCORE: " + String(self.score))
         }
+        
     }
 
+    func clearScreen(){
+        for (aSubview) in self.view.subviews {
+            if ((self.shipImage != aSubview) && (aSubview != roadImage) && (aSubview != birds) && (aSubview != coin) && (aSubview != gameover)){
+                aSubview.removeFromSuperview()
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
